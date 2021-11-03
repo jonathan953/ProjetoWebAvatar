@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport:" content="width=device-width, initial-scale=1">
+    <title>Cadastre-se</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- cabeçalho principal -->
+    <header class="header-principal">
+
+        <!-- área de logo -->
+        <section class="menu">
+            <a href="index.html">Avatar</a>
+        </section>
+        <!-- fim área de logo -->
+    </header>
+    <div class="fundo7 container-fluid">
+
+        <section>
+            <h2 class="titulo-cadastro"> Cadastro da Viagem </h2>
+            <form class="dados">
+                <div class=" infos form-group">
+                    <label for="nome">Nome do Cliente</label>
+                    <input type="text" class="form-control" id="form-nome" placeholder="ex: Sr. Smith" required>
+                </div>
+
+                <div class=" infos form-group">
+                    <label for="nome">E-mail do Cliente</label>
+                    <input type="text" class="form-control" id="form-email" placeholder="ex: pandora@gmail.com" required>
+                </div>
+
+                <div class="infos">
+                    <label for="data">Data de Nascimento: </label><br>
+                    <input type="date" id="form-dataNasc" required>
+                </div>
+
+                <div class="infos">
+                    <label for="numero">Quantidade de Pessoas:</label><br>
+                    <input type="number" id="form-qtd" required>
+                </div>
+
+                <div class="infos">
+                    <label for="data">Data da Viagem: </label><br>
+                    <input type="date" id="form-data" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="infos">
+                        <label for="form-tipo">Local da Hospedagem</label>
+                        <select id="form-opcao" class="form-control" required>
+                            <option value="0">Montanhas Flutuantes</option>                             
+                            <option value="1">A grande Árvore</option> 
+                            <option value="2">O Jardim Sagrado</option> 
+                            <option value="3">Floresta Neon</option> 
+                        </select>
+                    </div>
+
+
+                    <div>
+                        <button type="submit" class="confirmar">Confirmar</button>
+                    </div>
+            </form>
+
+            <section>
+                <h2 class="titulo-cadastro">Informações da Viagem</h2>
+                <table id="resumo" class="table table-hover text col-8">
+                    <thead>
+                        <tr id="cabecalho">
+                            <th class="form-nome">Cliente:</th>
+                            <th class="form-email">E-mail:</th>
+                            <th class="form-dataNasc">Data de Nascimento:</th>
+                            <th class="form-qtd">Quantidade de Pessoas:</th>
+                            <th class="form-data">Data da Viagem:</th>
+                            <th class="form-opcao">Local da Hospedagem:</th>
+                            <th class="saldo-hospedagem">Valor Total da Hospedagem:</th>
+                            <th class="saldo-total">Valor Total do Translado:</th>
+                            <th class="saldo-final">Valor Final da Viagem:</th>
+                        </tr>
+                    </thead>
+                    <tbody class="historico">
+                    </tbody>
+                </table>
+            </section>
+            </div>
+
+
+            <!-- LINKANDO O JAVASCRIPT -->
+            <script src="./js/app.js"></script>
+</body>
+
+</html>
