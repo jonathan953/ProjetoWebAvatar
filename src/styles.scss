@@ -1,0 +1,74 @@
+:root {
+  --color-black: #000;
+  --color-white: #fff;
+  --color-pink: #f33296;
+  --color-text: #202020;
+  --color-muted: #666;
+  --color-danger: #cf3d56;
+  --color-page-bg: rgb(195, 195, 187);
+  --color-overlay-light: rgba(255, 255, 255, 0.44);
+  --color-overlay-soft: rgba(255, 255, 255, 0.32);
+  --shadow-card: 0 18px 50px rgba(0, 0, 0, 0.14);
+  --radius-md: 14px;
+  --container-max: 1280px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Recursive', sans-serif;
+  font-size: clamp(15px, 0.5vw + 14px, 18px);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-white);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.page-container {
+  width: min(var(--container-max), calc(100% - 32px));
+  margin: 0 auto;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 560px) {
+  .page-container {
+    width: calc(100% - 16px);
+  }
+}

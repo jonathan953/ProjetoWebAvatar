@@ -1,0 +1,11 @@
+@for (hospedagem of hospedagens; track hospedagem.id) {
+  <app-scenic-section
+    [title]="hospedagem.nome"
+    [description]="hospedagem.descricao"
+    [backgroundImage]="hospedagem.imagemFundo"
+    [align]="hospedagem.alinhamento ?? 'left'"
+    theme="light"
+    sectionClass="hospedagem-section"
+    titleClass="hospedagem-title"
+  ></app-scenic-section>
+}

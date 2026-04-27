@@ -1,0 +1,37 @@
+.rodape {
+  min-height: 15vh;
+  background-color: var(--color-black);
+  color: var(--color-white);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  font-size: 0.95rem;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rede-social {
+  color: var(--color-muted);
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.fa-instagram:hover { color: var(--color-pink); }
+.fa-twitter:hover { color: #00acee; }
+.fa-youtube:hover { color: #c4302b; }
+.fa-discord:hover { color: #993399; }
+.fa-twitch:hover { color: #6441a5; }
+
+@media (max-width: 720px) {
+  .rodape {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}

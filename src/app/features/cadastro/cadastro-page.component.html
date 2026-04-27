@@ -1,0 +1,106 @@
+<main class="cadastro-page">
+  <section class="page-container cadastro-layout">
+    <div class="cadastro-card">
+      <h1 class="titulo-cadastro">Cadastro da Viagem</h1>
+
+      <form [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label for="nome">Nome do Cliente</label>
+            <input id="nome" type="text" formControlName="nome" placeholder="Ex.: Sr. Smith" [ngClass]="{ 'input-erro': nome.invalid && nome.touched }" />
+            <p class="mensagem-erro" *ngIf="nome.errors?.['required'] && nome.touched">Informe o nome do cliente.</p>
+            <p class="mensagem-erro" *ngIf="nome.errors?.['minlength'] && nome.touched">Digite ao menos 3 caracteres.</p>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="email">E-mail do Cliente</label>
+            <input id="email" type="email" formControlName="email" placeholder="Ex.: pandora@gmail.com" [ngClass]="{ 'input-erro': email.invalid && email.touched }" />
+            <p class="mensagem-erro" *ngIf="email.errors?.['required'] && email.touched">Informe o e-mail.</p>
+            <p class="mensagem-erro" *ngIf="email.errors?.['email'] && email.touched">Digite um e-mail válido.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="dataNascimento">Data de Nascimento</label>
+            <input id="dataNascimento" type="date" formControlName="dataNascimento" [ngClass]="{ 'input-erro': dataNascimento.invalid && dataNascimento.touched }" />
+            <p class="mensagem-erro" *ngIf="dataNascimento.errors?.['required'] && dataNascimento.touched">Informe a data de nascimento.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="quantidadePessoas">Quantidade de Pessoas</label>
+            <input id="quantidadePessoas" type="number" min="1" max="12" formControlName="quantidadePessoas" [ngClass]="{ 'input-erro': quantidadePessoas.invalid && quantidadePessoas.touched }" />
+            <p class="mensagem-erro" *ngIf="quantidadePessoas.errors?.['required'] && quantidadePessoas.touched">Informe a quantidade de pessoas.</p>
+            <p class="mensagem-erro" *ngIf="quantidadePessoas.errors?.['min'] && quantidadePessoas.touched">A viagem precisa ter ao menos 1 pessoa.</p>
+            <p class="mensagem-erro" *ngIf="quantidadePessoas.errors?.['max'] && quantidadePessoas.touched">O limite por reserva é de 12 pessoas.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="dataViagem">Data da Viagem</label>
+            <input id="dataViagem" type="date" formControlName="dataViagem" [ngClass]="{ 'input-erro': dataViagem.invalid && dataViagem.touched }" />
+            <p class="mensagem-erro" *ngIf="dataViagem.errors?.['required'] && dataViagem.touched">Informe a data da viagem.</p>
+          </div>
+
+          <div class="form-field">
+            <label for="hospedagemId">Local da Hospedagem</label>
+            <select id="hospedagemId" formControlName="hospedagemId" [ngClass]="{ 'input-erro': hospedagemId.invalid && hospedagemId.touched }">
+              @for (hospedagem of hospedagens; track hospedagem.id) {
+                <option [value]="hospedagem.id">{{ hospedagem.nome }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <section class="resumo-card" aria-label="Resumo financeiro da viagem">
+          <h2>Resumo da viagem</h2>
+          <p><strong>Hospedagem:</strong> {{ hospedagemSelecionada().nome }}</p>
+          <p><strong>Resumo:</strong> {{ hospedagemSelecionada().resumo }}</p>
+          <p><strong>Valor da hospedagem:</strong> {{ valorHospedagem() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+          <p><strong>Valor do translado:</strong> {{ valorTranslado() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+          <p class="valor-final"><strong>Valor final:</strong> {{ valorFinal() | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</p>
+        </section>
+
+        <div class="actions-row">
+          <button type="submit" class="confirmar" [disabled]="form.invalid">Confirmar</button>
+        </div>
+      </form>
+    </div>
+
+    <section class="cadastro-card">
+      <h2 class="titulo-cadastro">Informações da Viagem</h2>
+
+      <div class="empty-state" *ngIf="reservas().length === 0">Nenhuma viagem cadastrada ainda.</div>
+
+      <div class="table-wrapper" *ngIf="reservas().length > 0">
+        <table class="resumo-table">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>E-mail</th>
+              <th>Nascimento</th>
+              <th>Pessoas</th>
+              <th>Viagem</th>
+              <th>Hospedagem</th>
+              <th>Valor Hospedagem</th>
+              <th>Translado</th>
+              <th>Total</th>
+              <th>Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let reserva of reservas(); let index = index; trackBy: trackByReserva">
+              <td>{{ reserva.nome }}</td>
+              <td>{{ reserva.email }}</td>
+              <td>{{ reserva.dataNascimento | date:'dd/MM/yyyy' }}</td>
+              <td>{{ reserva.quantidadePessoas }}</td>
+              <td>{{ reserva.dataViagem | date:'dd/MM/yyyy' }}</td>
+              <td>{{ reserva.hospedagemNome }}</td>
+              <td>{{ reserva.valorHospedagem | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ reserva.valorTranslado | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td>{{ reserva.valorFinal | currency:'BRL':'symbol':'1.2-2':'pt-BR' }}</td>
+              <td><button type="button" class="btn-remover" (click)="removerReserva(index)">Remover</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </section>
+</main>

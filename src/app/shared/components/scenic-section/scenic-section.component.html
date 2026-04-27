@@ -1,0 +1,15 @@
+<section
+  class="hero-section"
+  [class.hero-section--right]="align() === 'right'"
+  [class.hero-section--light]="theme() === 'light'"
+  [ngClass]="sectionClass()"
+  [style.background-image]="'url(' + backgroundImage() + ')'"
+>
+  <div class="hero-section__content">
+    <h2 [class]="titleClass()">{{ title() }}</h2>
+    <p class="hero-section__text" [innerHTML]="description()"></p>
+    <div class="hero-section__actions">
+      <ng-content select="[section-actions]"></ng-content>
+    </div>
+  </div>
+</section>
